@@ -27,35 +27,43 @@ public class Parameters {
   public double scaley;
   public boolean test;
   public int pixperm;
+  public String errorCorrectionLevel1;
   public double separation;
+  public String inargs;
   public int height2;
   public Map<EncodeHintType, Object> hints;
   public BarcodeFormat conf_barcodeFormat;
   public String conf_outputFileBase;
   public int conf_width;
   public int conf_height;
-  public String conf_errorCorrectionLevel;
   public String conf_imageFormat;
   public boolean conf_help;
   public String conf_contents;
   public Parameters(String[] args){
     this.columns=10;
+    String config_linux_s="1";
     String parameterName = "c:\\Temp\\parameters2.txt";
+    if(config_linux_s.equals("1")){
+      parameterName = "/home/avillarr/tmp/parameters2.txt";
+    }
     String config_width_s="";
     String config_height_s="";
     String config_columns_s="";
+    String config_errorCorrectionLevel_s="";
+    String config_pixperm_s="";
+    String config_separation_s="";
     String config_test_s="";
-    String config_pixperm="";
-    String config_separation="";
+    String config_args_s="";
     try {
       BufferedReader reader1 = new BufferedReader(new FileReader(parameterName));
       config_width_s = reader1.readLine();
       config_height_s = reader1.readLine();
       config_columns_s = reader1.readLine();
-      conf_errorCorrectionLevel = reader1.readLine();
+      config_errorCorrectionLevel_s = reader1.readLine();
+      config_pixperm_s = reader1.readLine();
+      config_separation_s = reader1.readLine();
       config_test_s = reader1.readLine();
-      config_pixperm = reader1.readLine();
-      config_separation = reader1.readLine();
+      config_args_s = reader1.readLine();
       reader1.close();
     } catch (IOException e) {
       e.printStackTrace();
@@ -64,9 +72,11 @@ public class Parameters {
       width = Integer.parseInt(config_width_s);
       height = Integer.parseInt(config_height_s);
       columns = Integer.parseInt(config_columns_s);
+      errorCorrectionLevel1 = config_errorCorrectionLevel_s;
+      pixperm = Integer.parseInt(config_pixperm_s);
+      separation = Double.parseDouble(config_separation_s);
       test = Integer.parseInt(config_test_s)==1;
-      pixperm = Integer.parseInt(config_pixperm);
-      separation = Double.parseDouble(config_separation);
+      inargs = config_args_s;
     } catch (NumberFormatException e) {
       e.printStackTrace();
     }
@@ -77,7 +87,7 @@ public class Parameters {
     hints.put(EncodeHintType.CODE128_COMPACT, "x");
     hints.put(EncodeHintType.DATA_MATRIX_COMPACT, "x");
     hints.put(EncodeHintType.DATA_MATRIX_SHAPE, "x");
-    hints.put(EncodeHintType.ERROR_CORRECTION, 1);
+    hints.put(EncodeHintType.ERROR_CORRECTION, errorCorrectionLevel1);
     hints.put(EncodeHintType.FORCE_C40, "x");
     hints.put(EncodeHintType.FORCE_CODE_SET, "x");
     hints.put(EncodeHintType.GS1_FORMAT, "x");
@@ -91,26 +101,26 @@ public class Parameters {
     hints.put(EncodeHintType.QR_COMPACT, "x");
     hints.put(EncodeHintType.QR_MASK_PATTERN, "x");
     hints.put(EncodeHintType.QR_VERSION, "x");
-    EncoderConfig config = new EncoderConfig();
-    JCommander jCommander = new JCommander(config);
-    jCommander.parse(args);
-    jCommander.setProgramName(CommandLineEncoder3.class.getSimpleName());
-    if (config.help) {
-      jCommander.usage();
-    }
-    conf_barcodeFormat=config.barcodeFormat;
-    conf_outputFileBase=config.outputFileBase;
-    conf_width=config.width;
-    conf_height=config.height;
-    conf_errorCorrectionLevel=config.errorCorrectionLevel;
-    conf_imageFormat=config.imageFormat;
-    conf_help=config.help;
-    conf_contents="";
-    for(int i=0;i<config.contents.size();i++){
-      conf_contents+=config.contents.get(i);
-      if(i<config.contents.size()-1){
-        conf_contents+=" ";
-      }
-    }
+    //EncoderConfig config = new EncoderConfig();
+    //JCommander jCommander = new JCommander(config);
+    //jCommander.parse(args);
+    //jCommander.setProgramName(CommandLineEncoder3.class.getSimpleName());
+    //if (config.help) {
+    //  jCommander.usage();
+    //}
+    //conf_barcodeFormat=config.barcodeFormat;
+    //conf_outputFileBase=config.outputFileBase;
+    //conf_width=config.width;
+    //conf_height=config.height;
+    //conf_errorCorrectionLevel=errorCorrectionLevel1;
+    //conf_imageFormat=config.imageFormat;
+    //conf_help=config.help;
+    //conf_contents="";
+    //for(int i=0;i<config.contents.size();i++){
+    //  conf_contents+=config.contents.get(i);
+    //  if(i<config.contents.size()-1){
+    //    conf_contents+=" ";
+    //  }
+    //}
   }
 }

@@ -204,7 +204,7 @@ public final class CommandLineEncoder3 {
             ends = true;
           }
         }else{
-          s1 = "C:\\Temp\\p1.hex|C:\\Temp\\p1";
+          s1 = parms.inargs;
           System.out.println("simulated message: [" + s1 + "] length: " + s1.length());
           process(s1,parms);
           ends = true;
