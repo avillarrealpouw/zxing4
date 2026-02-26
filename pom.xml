@@ -55,9 +55,6 @@
 
   <modules>
     <module>core</module>
-    <!-- android modules are activated by a profile below -->
-    <!-- zxingorg activated by a profile below -->
-    <!-- appspot app activated by a profile below -->
   </modules>
 
   <properties>
@@ -750,15 +747,6 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
-    <profile>
-      <id>zxingorg</id>
-      <activation>
-        <jdk>[17,)</jdk> <!-- Requires Java 17+ for Java EE 10+ -->
-      </activation>
-      <modules>
-        <module>zxingorg</module>
-      </modules>
     </profile>
     <profile>
       <id>appspot</id>
