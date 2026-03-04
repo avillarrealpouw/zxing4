@@ -217,13 +217,17 @@ public class MatrixToBMP {
         if(matrix.get(j3, i3)){
           //System.out.print("O");
           if(even){
-            a.append(false, scalex);
-            ae.append(false, scalex);
+            a.append(false, scalex-separation);
+            a.append(true,separation);
+            ae.append(false, scalex-separation);
+            ae.append(true,separation);
             ao.append(true, scalex);
           }else{
-            a.append(false, scalex);
+            a.append(false, scalex-separation);
+            a.append(true,separation);
             ae.append(true, scalex);
-            ao.append(false, scalex);
+            ao.append(false, scalex-separation);
+            ao.append(true,separation);
           }
         }else{
           //System.out.print(".");
